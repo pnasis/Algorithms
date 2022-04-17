@@ -1,54 +1,50 @@
 /*
-Όνομα: 141-linsearch (Σειριακή αναζήτηση)
-Είσοδος: Πίνακας Τ με Ν αριθμούς (τύπου double) και a ο αριθμός προς αναζήτηση (typou double).
-Έξοδος: Η θέση index στην οποία βρέθηκε ο αριθμός (τύπου int) και μια λογική μεταβλητή found
-        (τύπου int) η οποία δηλώνει αν βρέθηκε ο αριθμός a ή όχι. 
-Περιγραφή: Ο αλγόριθμος εξετάζει σειριακά ένα-προς-ένα τα στοιχεία του Τ και εντοπίζει αν 
-           υπάρχει το στοιχείο προς αναζήτηση a.
+INPUT: An array T with N elements and a the number we want to find.
+OUTPUT: The index that the element has been found and a found value.
+DESCRIPTION: The algorithm checks every index of the array and checks if the number a exists.
 */
 
 #include <stdio.h>
 
-/*Δήλωση συνάρτησης*/
 void linsearch(double T[], int n, double a, int *found, int *index);
 
 main(){
     double T[100];
     double a;
     int i,N;
-    int found; /* Είναι found=1 αν το στοιχείο βρέθηκε. Αλλιώς είναι found=0*/
-    int index; /* Θέση του στοιχείου που ψάχνουμε */
+    int found; /*If found=1 the element has been found, else found=0*/
+    int index; /*The index of the element we are looking for*/
     
-    printf("Dose th diastash toy T:");
+    printf("Give the size of T:");
     scanf("%d",&N);
     
     for(i=0;i<N;i++){
-       printf("Dose ton %d ari8mo:",i);
+       printf("Give the %d number:",i);
        scanf("%lf",&T[i]);
        }   
        
-    printf("Dwse stoixeio pou psaxnoume:");
+    printf("Give the desirable number:");
     scanf("%lf",&a);
     
-    /* Κλήση της συνάρτησης linsearch*/
+    /*We call the linsearch Function*/
     linsearch(T,N,a,&found,&index);
 
-    /* Εκτύπωση αποτελέσματος*/
+    /*Results*/
     if(found==1) 
-         printf("To stoixeio %f brethike sti thesi %d tou pinaka\n",a,index+1);
+         printf("The element %f has been found at the %d index of the array\n",a,index+1);
     else 
-         printf("To stoixeio %f den brethike ston pinaka\n",a);
+         printf("The element %f not found\n",a);
     system("pause");
 }
 
-/* Συνάρτηση σειριακής αναζήτησης */
+/* Linear Search Function*/
 void linsearch(double T[], int n, double a, int *found, int *index){
     int k;
-    *found=0; /* Αρχικά θέτουμε ότι το στοιχείο δεν βρέθηκε */
+    *found=0;
     *index=0;
     k=0;
     while(k<n && *found==0){
-        if(T[k]==a){ /*Έλεγχος αν το στοιχείο είναι ίσο με αυτό στη θέση k*/
+        if(T[k]==a){ /*We check if the element is equals with the k index's value*/
             *found=1;
             *index=k;
         }
