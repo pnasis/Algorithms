@@ -1,55 +1,50 @@
 /*
-Όνομα: binsearch (Δυαδική αναζήτηση)
-Είσοδος: Πίνακας Τ με Ν αριθμούς (τύπου double) ταξινομημένους και a ο αριθμός
-         προς αναζήτηση (typou double).
-Έξοδος: Η θέση index στην οποία βρέθηκε ο αριθμός (τύπου int) και μια λογική μεταβλητή found
-        (τύπου int) η οποία δηλώνει αν βρέθηκε ο αριθμός a ή όχι. 
-Περιγραφή: Ο αλγόριθμος ελεγχει αρχικά αν το μεσαίο στοιχείο του Τ είναι αυτό που ψάχνουμε.
-           Αν δεν είναι τότε η αναζήτηση ψάχνει είτε στο αριστερό τμήμα είτε στο
-           δεξιό ανάλογα με το αποτέλεσμα της σύγκρισης.
+INPUT: An array T with N numbers.
+OUTPUT: The index of the number and a found value. 
+DESCRIPTION: The algorithm checks first if the middle value of the array T is the value that we are looking for.
+             If it's not, then it checks on the left or right part depending on how big the value was.
 */
 
 #include <stdio.h>
 
-/*Δήλωση συνάρτησης*/
 void binsearch(double T[], int n, double a, int *found, int *index);
 
 main(){
     double T[100];
     double a;
     int i,N;
-    int found; /* Είναι found=1 αν το στοιχείο βρέθηκε. Αλλιώς είναι found=0*/
-    int index; /* Θέση του στοιχείου που ψάχνουμε */
+    int found; /* if found=1 the element was found, else found=0*/
+    int index; /*The index of the element we want*/
     
-    printf("Dose th diastash toy T:");
+    printf("Give the size of the T:");
     scanf("%d",&N);
     
     for(i=0;i<N;i++){
-       printf("Dose ton %d ari8mo:",i);
+       printf("Give the %d number:",i);
        scanf("%lf",&T[i]);
        }   
        
-    printf("Dwse stoixeio pou psaxnoume:");
+    printf("Give the desirable element:");
     scanf("%lf",&a);
     
-    /* Κλήση της συνάρτησης linsearch*/
+    /* ΞΞ»Ξ®ΟƒΞ· Ο„Ξ·Ο‚ ΟƒΟ…Ξ½Ξ¬ΟΟ„Ξ·ΟƒΞ·Ο‚ linsearch*/
     binsearch(T,N,a,&found,&index);
 
-    /* Εκτύπωση αποτελέσματος*/
+    /* Ξ•ΞΊΟ„ΟΟ€Ο‰ΟƒΞ· Ξ±Ο€ΞΏΟ„ΞµΞ»Ξ­ΟƒΞΌΞ±Ο„ΞΏΟ‚*/
     if(found==1) 
-         printf("To stoixeio %f brethike sti thesi %d tou pinaka\n",a,index+1);
+         printf("The element %f found on the %d index of the array\n",a,index+1);
     else 
-         printf("To stoixeio %f den brethike ston pinaka\n",a);
+         printf("The element %f not found\n",a);
     
     system("pause");
 }
 
-/* Συνάρτηση δυαδικής αναζήτησης */
+/* Binary search function*/
 void binsearch(double T[], int n, double a, int *found, int *index){
-    int i=0;    /* αριστερό άκρο */
-    int j=n-1;  /* δεξιό άκρο */
-    int k;      /* μεσαία τιμή πίνακα */
-    *found=0; /* αρχικά θεωρούμε ότι το στοιχείο δεν βρέθηκε*/
+    int i=0;    /* left part */
+    int j=n-1;  /* right part */
+    int k;      /* middle value of the array */
+    *found=0;
     *index=0;
     k=0;
     while(i<=j && *found==0){
